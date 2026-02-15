@@ -125,3 +125,8 @@ This document explains how certain values in the `README.md` tables were derived
 ## UNI2-h / UNI2-g-preview
 
 - **Magnification (~9-25x)**: UNI2 models do not have a separate paper; the same training recipe as UNI1 is assumed (256×256 at 20x main training + 512×512 at 20x high-res fine-tuning, with `global_crops_scale=(0.48, 1.0)` and `global_crops_size=224`). See the UNI entry above for the full calculation. Both UNI2-h (ViT-H/14) and UNI2-g-preview (ViT-G/14) share the same training data (350K+ WSIs, 200M tiles) and DINOv2 recipe.
+
+## PathOrchestra
+
+- **Patients (41K cases)**: Not reported as a single total in the paper. Calculated by summing per-center case counts from Supplementary Table 4: Xijing Hospital (13,303 cases) + First Affiliated Hospital of USTC (16,749 cases) + TCGA (10,990 cases) = 41,042 cases.
+- **Magnification (~18-25x)**: Patches are 256×256 at 20x magnification (main paper: "We sampled 256 × 256 patches at 20 × magnification"). Trained with DINOv2 using `global_crops_scale=(0.48, 1.0)` with `global_crops_size=224` (Supplementary Table 3 and Methods section). At scale=1.0: 20x × (224/256) = 17.5x; at scale=0.48: 20x × (224/177.4) = 25.3x.
